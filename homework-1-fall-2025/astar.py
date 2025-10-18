@@ -12,19 +12,19 @@ def heuristic(node: TilesNode) -> int:
     heuristic_value : int
         The heuristic value of the current node.
     """
-    dist =0
+    dist =0 #total distance starts at 0
 
-    for i in range(4):
-        for j in range (4):
-            t = node.state[i][j]
-            if t==0: continue
+    for i in range(4): #to traverse through 0-3 rows
+        for j in range (4): #to traverse through 0-3 rows
+            t = node.state[i][j] #create t to store the value of the curr node
+            if t==0: continue #if it's 0, then keep going
 
-            row_end=(t-1)//4
-            col_end=(t-1)%4
+            row_end=(t-1)//4 #goal row of tile t
+            col_end=(t-1)%4 #goal col of tile t
 
-            dist=dist+abs(i-row_end)+abs(j-col_end)
+            dist=dist+abs(i-row_end)+abs(j-col_end)#sum of all tile's distance
     return dist
-'''
+
 def AStar(root, heuristic: callable) -> TilesNode or None:  # type: ignore
     unexplored = PriorityQueue()
     counter = 0
@@ -37,8 +37,10 @@ def AStar(root, heuristic: callable) -> TilesNode or None:  # type: ignore
     g_score = {root: 0}
     f_score = {root: heuristic(root)}
 
-    #while not unexplored.empty():
+    while not unexplored.empty():
     
-    
-    #return None  # return None if no path was found
-'''
+        raise NotImplementedError(
+            "Implement the rest of this function as part of the assignment."
+        )
+
+    return None  # return None if no path was found

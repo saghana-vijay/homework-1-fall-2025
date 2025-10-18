@@ -62,20 +62,24 @@ class TilesNode:
         return new_state
 
     def get_children(self) -> list["TilesNode"]:
-        possible_child=[]
-        Erow,Ecol = self.find_empty_space()
+    #used to find other possible moves from the current state
+        possible_child=[] #list to store all possible next moves
+        Erow,Ecol = self.find_empty_space() #row and space to find the empty(0) tile
 
-        move=[(-1,0),(1,0),(0,-1),(0,1)]
+        move=[(-1,0),(1,0),(0,-1),(0,1)]#lists all potential moves that can be taken
 
-        for r, c in move:
-            Nrow= Erow+r
-            Ncol= Ecol+c
+        for r, c in move: #moving along tiles to try all sorts of moves
+            Nrow= Erow+r #new row of the empty space
+            Ncol= Ecol+c #new col of the empty space
 
-            if 0<=Nrow<4:
+            if 0<=Nrow<4:#ensures that row/col do not go out of bounds
                 if 0<=Ncol<4:
                     Nstate=self.swap_tiles(Erow, Ecol, Nrow, Ncol)
+                    #new state = swap new empty coordinates with older ones
                     child_node=TilesNode(Nstate, parent=self)
+                    #want to create the new TilesNode obj that knows this new state
                     possible_child.append(child_node)
+                    #add to the possible_child list, to recheck the process
         return possible_child
 
 
