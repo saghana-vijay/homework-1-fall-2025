@@ -24,7 +24,10 @@ class TilesNode:
         self.parent = parent
 
     def is_goal(self) -> bool:
-        raise NotImplementedError("Implement this function as part of the assignment.")
+        goalState=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,0]]
+        #since it was mentioned that self.state is "list of list", two dimensional array,
+        #you can just write own array that mimics end goal array.
+        return self.state==goalState
 
     def find_empty_space(self) -> tuple[int, int]:
         """Helper function to find the empty space in the current state.
@@ -59,7 +62,23 @@ class TilesNode:
         return new_state
 
     def get_children(self) -> list["TilesNode"]:
-        raise NotImplementedError("Implement this function as part of the assignment.")
+        possible_child=[]
+        Erow,Ecol = self.find_empty_space()
+
+        move=[(-1,0),(1,0),(0,-1),(0,1)]
+
+        for r, c in move:
+            Nrow= Erow+r
+            Ncol= Ecol+c
+
+            if 0<=Nrow<4:
+                if 0<=Ncol<4:
+                    Nstate=self.swap_tiles(Erow, Ecol, Nrow, Ncol)
+                    child_node=TilesNode(Nstate, parent=self)
+                    possible_child.append(child_node)
+        return possible_child
+
+
 
     def __str__(self):
         return "\n".join(" ".join(map(str, row)) for row in self.state)

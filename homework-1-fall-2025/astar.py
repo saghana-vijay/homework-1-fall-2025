@@ -12,8 +12,18 @@ def heuristic(node: TilesNode) -> int:
     heuristic_value : int
         The heuristic value of the current node.
     """
-    raise NotImplementedError("Implement this function as part of the assignment.")
+    dist =0
 
+    for i in range(4):
+        for j in range (4):
+            t = node.state[i][j]
+            if t==0: continue
+
+            row_end=(t-1)//4
+            col_end=(t-1)%4
+
+            dist=dist+abs(i-row_end)+abs(j-col_end)
+    return dist
 
 def AStar(root, heuristic: callable) -> TilesNode or None:  # type: ignore
     unexplored = PriorityQueue()
