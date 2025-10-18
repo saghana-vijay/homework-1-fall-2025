@@ -24,7 +24,7 @@ def heuristic(node: TilesNode) -> int:
 
             dist=dist+abs(i-row_end)+abs(j-col_end)
     return dist
-
+'''
 def AStar(root, heuristic: callable) -> TilesNode or None:  # type: ignore
     unexplored = PriorityQueue()
     counter = 0
@@ -37,9 +37,8 @@ def AStar(root, heuristic: callable) -> TilesNode or None:  # type: ignore
     g_score = {root: 0}
     f_score = {root: heuristic(root)}
 
-    while not unexplored.empty():
-        raise NotImplementedError(
-            "Implement the rest of this function as part of the assignment."
-        )
-
-    return None  # return None if no path was found
+    #while not unexplored.empty():
+    
+    
+    #return None  # return None if no path was found
+'''
